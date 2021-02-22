@@ -4,6 +4,7 @@ Store search is a web application to interact with a Walmart GraphQL API, displa
 
 ### Tech
 Node.js w/ Express
+
 Javascript w/ React
 
 ### Installation
