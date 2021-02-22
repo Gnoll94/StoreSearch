@@ -32,3 +32,20 @@ Running unit tests
 $ cd StoreSearch/client
 $ npm run test
 ```
+
+### Overview of Endpoints
+## Zip Code Search
+Returns data about stores that are close to the specified zip code
+* **URL**
+/stores/:zip/:radius?
+
+* **Method:**
+POST
+
+*  **URL Params**
+
+**Required:**
+```zip=[String]```
+
+**Optional:**
+```radius=[integer]```
