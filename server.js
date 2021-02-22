@@ -7,7 +7,7 @@ const zipRouter = require('./routes/zip');
 
 app.use('/stores', zipRouter);
 
-app.listen(port, () => {
+var server = app.listen(port, () => {
   console.log(`Store Search listening at http://localhost:${port}`)
 })
 
@@ -20,3 +20,5 @@ importantZipCodes.forEach(function (zipCode) {
     console.log(`Caching zip code ${zipCode}`)
   })
 })
+
+module.exports = server;
