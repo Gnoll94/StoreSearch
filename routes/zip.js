@@ -24,7 +24,10 @@ const buildZipCodeQuery = (zip='00000', radius=50) => (
        distance
        address {
          address
+         city
+         state
        }
+       phone
        displayName
      }
    }

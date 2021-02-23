@@ -3,6 +3,8 @@ import { ZipCodeInput, validateZipCode } from './ZipCodeInput';
 import { RadiusInput, validateRadius } from './RadiusInput';
 import { SearchResults } from './SearchResults'
 import { storeRequest } from './storeRequest'
+import ClipLoader from "react-spinners/ClipLoader";
+import logo from '../logo.png'
 
 export const App = () => {
   const [zipCode, setZipCode] = useState('04005');
@@ -12,6 +14,7 @@ export const App = () => {
   const [radiusErrorMessage, setRadiusErrorMessage] = useState();
 
   const [storeResults, setStoreResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);  
 
   const validateForm = () => {
       return validateRadius(radius, setRadiusErrorMessage) & 
@@ -20,15 +23,20 @@ export const App = () => {
 
   const onClick = async () => {
       if(validateForm()) {
+      	setStoreResults([])
+      	setIsLoading(true)
       	const result = await storeRequest(zipCode, radius)
       	if(result && result.data && result.data.storesBySearchTerm) {
       		setStoreResults(result.data.storesBySearchTerm.stores)
+      		console.log(result.data.storesBySearchTerm.stores)
       	}
+      	setIsLoading(false)
       }
   };
 
   const searchResultProps = {
-     stores: storeResults
+     stores: storeResults,
+     isLoading
   }  
 
   const zipCodeProps = {
@@ -45,6 +53,8 @@ export const App = () => {
 
   return (
     <div className='container'>
+  	  <img src={logo} className="img-fluid"/>
+  	  <div className="text-center"> Search for a specific Zip Code & Radius and get nearby Walmart stores </div>
       <form role='form'>
 	      <div className="form-group">
 	      	<ZipCodeInput {...zipCodeProps} />
@@ -58,6 +68,15 @@ export const App = () => {
                 </div>
             </div>	  	  
   	  </form>
+  	  {isLoading && 
+  	  	<div className='d-flex justify-content-center'>
+	  	  	<div className="spinner-border" role="status">
+	  	  	</div>
+  	  	</div>
+  	  }
+  	  {storeResults !== undefined && storeResults.length != 0 && 
+  	  	<div className='col-12 text-center p-3'>{storeResults.length} stores found</div>
+  	  }
   	  <SearchResults {...searchResultProps} />
     </div>
   );
