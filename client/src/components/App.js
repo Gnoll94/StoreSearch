@@ -1,19 +1,51 @@
 import {useEffect, useState} from 'react';
-import { ZipCodeInput } from './ZipCodeInput';
-import { RadiusInput } from './RadiusInput';
+import { ZipCodeInput, validateZipCode } from './ZipCodeInput';
+import { RadiusInput, validateRadius } from './RadiusInput';
 
-function App() {
+export const App = () => {
+  const [zipCode, setZipCode] = useState('');
+  const [zipCodeErrorMessage, setZipCodeErrorMessage] = useState();
+
+  const [radius, setRadius] = useState('50');
+  const [radiusErrorMessage, setRadiusErrorMessage] = useState();
+
+  const validateForm = () => {
+      return validateRadius(radius, setRadiusErrorMessage) & 
+        validateZipCode(zipCode, setZipCodeErrorMessage)
+  };
+
+  const onClick = () => {
+      if(validateForm()) {
+      	console.log('valid')
+      }
+  };
+
+  const zipCodeProps = {
+  	value: zipCode,
+  	setValue: setZipCode,
+  	inputErrorMessage: zipCodeErrorMessage  	
+  }
+
+  const radiusProps = {
+  	value: radius,
+  	setValue: setRadius,
+  	inputErrorMessage: radiusErrorMessage
+  }
+
   return (
     <div className='container'>
       <form role='form'>
 	      <div className="form-group">
-	      	<label>Zip Code</label>
-	      	<ZipCodeInput/>
+	      	<ZipCodeInput {...zipCodeProps} />
 	  	  </div>
 	      <div className="form-group">
-	      	<label>Radius</label>
-	      	<RadiusInput/>
+	      	<RadiusInput {...radiusProps} />
 	  	  </div>
+            <div className="row">
+                <div className="col-12 text-center p-3">
+                    <button type="button" className="btn btn-primary" onClick={onClick} >Enter</button>
+                </div>
+            </div>	  	  
   	  </form>
     </div>
   );
