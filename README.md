@@ -7,6 +7,9 @@ Node.js w/ Express
 
 Javascript w/ React
 
+### 100% Code Coverage on the React front-end
+![100% Coverage Screenshot](coverage.png)
+
 ### Installation
 
 Store Search requires [Node.js](https://nodejs.org/) v4+ to run.
