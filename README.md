@@ -7,7 +7,7 @@ Node.js w/ Express
 - Unit Testing done with Mocha
 
 Javascript w/ React
-- Unit Testing done with React Testing Library
+- Unit Testing done with React Testing Library & Jest
 
 ### React Front End 
 ![Front End View](https://raw.githubusercontent.com/Gnoll94/StoreSearch/master/WalmartOverview.PNG)
