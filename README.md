@@ -4,8 +4,10 @@ Store search is a web application to interact with a Walmart GraphQL API, displa
 
 ### Tech
 Node.js w/ Express
+- Unit Testing done with Mocha
 
 Javascript w/ React
+- Unit Testing done with React Testing Library
 
 ### React Front End 
 ![Front End View](https://raw.githubusercontent.com/Gnoll94/StoreSearch/master/WalmartOverview.PNG)
