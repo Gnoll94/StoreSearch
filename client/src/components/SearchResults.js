@@ -1,6 +1,6 @@
 export const SearchResults = (props) => {
-  const { stores, isLoading, firstRender } = props;
-  const showNoResults = (stores === undefined || stores.length == 0) && !firstRender
+  const { stores, firstRender } = props;
+  const showNoResults = (stores === undefined || stores.length === 0) && !firstRender
 
   const renderTableHeader = () => (
     <tr id='Header'>

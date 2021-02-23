@@ -1,9 +1,8 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { ZipCodeInput, validateZipCode } from './ZipCodeInput';
 import { RadiusInput, validateRadius } from './RadiusInput';
 import { SearchResults } from './SearchResults'
 import { storeRequest } from './storeRequest'
-import ClipLoader from "react-spinners/ClipLoader";
 import logo from '../logo.png'
 
 export const App = () => {
@@ -29,10 +28,8 @@ export const App = () => {
       	setIsLoading(true)
       	setFirstRender(false)
       	const result = await storeRequest(zipCode, radius)
-        console.log(result)
       	if(result && result.data && result.data.storesBySearchTerm) {
       		setStoreResults(result.data.storesBySearchTerm.stores)
-      		console.log(result.data.storesBySearchTerm.stores)
       	}
       	setIsLoading(false)
       }
@@ -58,9 +55,9 @@ export const App = () => {
 
   return (
     <div className='container'>
-  	  <img src={logo} className="img-fluid"/>
+  	  <img src={logo} className="img-fluid" alt="walmart logo" />
   	  <div className="text-center"> Search for a specific Zip Code & Radius and get nearby Walmart stores </div>
-      <form role='form'>
+      <form>
 	      <div className="form-group">
 	      	<ZipCodeInput {...zipCodeProps} />
 	  	  </div>
@@ -79,7 +76,7 @@ export const App = () => {
 	  	  	</div>
   	  	</div>
   	  }
-  	  {storeResults !== undefined && storeResults.length != 0 && 
+  	  {storeResults !== undefined && storeResults.length !== 0 && 
   	  	<div className='col-12 text-center p-3'>{storeResults.length} stores found</div>
   	  }
   	  <SearchResults {...searchResultProps} />
