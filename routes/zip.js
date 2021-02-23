@@ -43,7 +43,8 @@ router.get('/:zip/:radius?', (req, res) => {
       fetch(API_URL, {
          method: "POST",
          headers: {
-           "Content-Type": "application/json"
+           "Content-Type": "application/json",
+           "Access-Control-Allow-Origin": "*"
          },
          body: JSON.stringify({
            query: buildZipCodeQuery(req.params.zip, radius)

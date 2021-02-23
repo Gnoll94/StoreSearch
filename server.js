@@ -1,10 +1,12 @@
 const express = require('express')
 const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
 const port = 4000;
 const zipRouter = require('./routes/zip');
 
+app.use(cors({origin: 'http://localhost:3000'}));
 app.use('/stores', zipRouter);
 
 var server = app.listen(port, () => {
