@@ -12,7 +12,7 @@ Javascript w/ React
 ### React Front End 
 ![Front End View](https://raw.githubusercontent.com/Gnoll94/StoreSearch/master/WalmartOverview.PNG)
 
-### 100% Code Coverage on the React front-end
+### 100% Code Coverage on the React front-end w/ no linting warnings/errors
 ![100% Coverage](https://raw.githubusercontent.com/Gnoll94/StoreSearch/master/coverage.PNG)
 
 ### Installation
