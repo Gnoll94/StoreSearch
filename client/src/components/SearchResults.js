@@ -1,7 +1,5 @@
 export const SearchResults = (props) => {
-  console.log(props)
   const { stores, isLoading, firstRender } = props;
-  console.log(firstRender)
   const showNoResults = (stores === undefined || stores.length == 0) && !firstRender
 
   const renderTableHeader = () => (

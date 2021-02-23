@@ -29,6 +29,7 @@ export const App = () => {
       	setIsLoading(true)
       	setFirstRender(false)
       	const result = await storeRequest(zipCode, radius)
+        console.log(result)
       	if(result && result.data && result.data.storesBySearchTerm) {
       		setStoreResults(result.data.storesBySearchTerm.stores)
       		console.log(result.data.storesBySearchTerm.stores)
