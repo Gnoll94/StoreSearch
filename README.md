@@ -13,6 +13,10 @@ Store Search requires [Node.js](https://nodejs.org/) v4+ to run.
 
 Install the dependencies and devDependencies and start the server.
 
+This repo houses the node JS server, as well as the react front-end(under /client)
+
+You'll need two separate CMD windows to run both at the same time
+
 Running the Server
 ```sh
 $ cd StoreSearch
@@ -27,7 +31,13 @@ $ npm install
 $ npm start
 ```
 
-Running unit tests
+Running Node.JS unit tests (using mocha)
+```
+$ cd StoreSearch
+$ npm run test
+```
+
+Running React unit tests (using Jest)
 ```
 $ cd StoreSearch/client
 $ npm run test
