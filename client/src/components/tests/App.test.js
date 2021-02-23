@@ -33,6 +33,40 @@ test('Should handle inputs properly', () => {
   expect(radiusInput.value).toBe('')
 });
 
+test('Should handle bad input properly', async () => {
+  const {getByLabelText, getByRole} = render(<App />);
+
+  const zipInput = getByLabelText('Zip Code')
+  fireEvent.change(zipInput, { target: { value: 'ababaa' } })  
+
+  const radiusInput = getByLabelText('Radius')  
+  fireEvent.change(radiusInput, { target: { value: 'vvv' } })  
+
+  const submitButton = getByRole('button')
+  fireEvent.click(submitButton)
+
+  await waitFor(() => expect(screen.getByText('Zip Code needs to be a number formatted like 12345')).toBeInTheDocument())  
+  await waitFor(() => expect(screen.getByText('Radius needs to be an integer value between 0 and 99')).toBeInTheDocument())  
+});
+
+test('Should handle a failed request', async () => {
+  const data = { data: {}};
+
+  storeRequest.mockImplementationOnce(() => Promise.resolve(data));  
+  const {getByLabelText, getByRole} = render(<App />);
+
+  const zipInput = getByLabelText('Zip Code')
+  fireEvent.change(zipInput, { target: { value: '04005' } })  
+
+  const radiusInput = getByLabelText('Radius')  
+  fireEvent.change(radiusInput, { target: { value: '50' } })  
+
+  const submitButton = getByRole('button')
+  fireEvent.click(submitButton)
+   
+  await waitFor(() => expect(screen.getByText('No Results')).toBeInTheDocument())
+});
+
 test('Should handle a search with no results', async () => {
   const data = {
     data: {
