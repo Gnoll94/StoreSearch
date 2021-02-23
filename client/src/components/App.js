@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
 import { ZipCodeInput, validateZipCode } from './ZipCodeInput';
 import { RadiusInput, validateRadius } from './RadiusInput';
-import {storeRequest} from './storeRequest'
+import { SearchResults } from './SearchResults'
+import { storeRequest } from './storeRequest'
 
 export const App = () => {
-  const [zipCode, setZipCode] = useState('');
+  const [zipCode, setZipCode] = useState('04005');
   const [zipCodeErrorMessage, setZipCodeErrorMessage] = useState();
 
   const [radius, setRadius] = useState('50');
@@ -21,10 +22,14 @@ export const App = () => {
       if(validateForm()) {
       	const result = await storeRequest(zipCode, radius)
       	if(result && result.data && result.data.storesBySearchTerm) {
-      		console.log(result.data.storesBySearchTerm.stores)
+      		setStoreResults(result.data.storesBySearchTerm.stores)
       	}
       }
   };
+
+  const searchResultProps = {
+     stores: storeResults
+  }  
 
   const zipCodeProps = {
   	value: zipCode,
@@ -53,6 +58,7 @@ export const App = () => {
                 </div>
             </div>	  	  
   	  </form>
+  	  <SearchResults {...searchResultProps} />
     </div>
   );
 }
