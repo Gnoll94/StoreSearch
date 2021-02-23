@@ -10,6 +10,8 @@ export const App = () => {
   const [zipCode, setZipCode] = useState('04005');
   const [zipCodeErrorMessage, setZipCodeErrorMessage] = useState();
 
+  const [firstRender, setFirstRender] = useState(true);
+
   const [radius, setRadius] = useState('50');
   const [radiusErrorMessage, setRadiusErrorMessage] = useState();
 
@@ -25,6 +27,7 @@ export const App = () => {
       if(validateForm()) {
       	setStoreResults([])
       	setIsLoading(true)
+      	setFirstRender(false)
       	const result = await storeRequest(zipCode, radius)
       	if(result && result.data && result.data.storesBySearchTerm) {
       		setStoreResults(result.data.storesBySearchTerm.stores)
@@ -36,7 +39,8 @@ export const App = () => {
 
   const searchResultProps = {
      stores: storeResults,
-     isLoading
+     isLoading,
+     firstRender
   }  
 
   const zipCodeProps = {
